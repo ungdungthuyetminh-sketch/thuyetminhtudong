@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>WebAR - Phạm Đức Cảnh</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <!-- Script để kiểm tra thiết bị và chọn nền phù hợp -->
+  <script>
+    function setBackgroundImage() {
+      // Xác định thiết bị là mobile nếu chiều rộng nhỏ hơn chiều cao
+      const isMobile = window.innerWidth < window.innerHeight;
+      const bgImage = isMobile ? 'images/nen2.jpg' : 'images/nen1.jpg';
+      document.body.style.backgroundImage = `url('${bgImage}')`;
+    }
+    // Gọi hàm khi trang tải xong và khi thay đổi kích thước cửa sổ
+    window.onload = setBackgroundImage;
+    window.onresize = setBackgroundImage;
+  </script>
+</head>
+<body>
+  <div class="container">
+    <h1>CHUYÊN CUNG CẤP SẢN PHẨM AR<br>LIÊN HỆ PHẠM ĐỨC CẢNH - 0334.464.434</h1>
+  </div>
+
+  <!-- Tải script unlock âm thanh -->
+  <script src="js/unlock-sound.js"></script>
+  
+  <!-- Script xử lý sự kiện cho nút Bắt đầu -->
+  <script>
+    document.getElementById('startButton').addEventListener('click', () => {
+      // BƯỚC 1: Mở khóa âm thanh ngay khi người dùng tương tác.
+      // Đây là bước quan trọng nhất để video trong ar.html có thể phát ra tiếng.
+      if (typeof unlockAudio === 'function') {
+        unlockAudio();
+      }
+
+      // BƯỚC 2: Chuyển hướng đến trang AR.
+      window.location.href = 'ar.html';
+    });
+  </script>
+</body>
+</html>
